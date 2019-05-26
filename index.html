@@ -1,0 +1,399 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css">
+		<link rel="stylesheet" href="lib/css/monokai.css">
+		<link rel="stylesheet" href="css/presentation.css">
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h1 class="name">JSON vs YAML vs TOML</h1>
+					<h6 class="speaker">speaker: Tatsiana Hetsman</h6>
+				</section>
+				<section>
+						<section id="fragments">
+								<h2>Languages support</h2>
+								<p class="fragment">C</p>  
+								<p class="fragment">C++</p>  
+								<p class="fragment">C#</p> 
+								<p class="fragment">Java</p>  
+								<p class="fragment">JavaScript etc.</p>
+							</section>
+				</section>
+				<section>
+					<section>
+					<h2>What is JSON?</h2>
+					</section>
+					<section>
+						<h2>According to <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON"> official sources </a></h2>
+						<blockquote cite="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON">JSON is a syntax for serializing objects, arrays, numbers, strings, booleans, and null.</blockquote>
+					</section>
+				<section id="fragments">
+					<h2>Quick facts about JSON syntacsis</h2>
+					<ul>
+						<li>Data stored in name/value pairs.</li>
+						<li>Records separated by commas. Trailing commas without the following property are not allowed.</li>
+						<li>Double quotes wrap property names and strings. Single quotes are not allowed.</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Code Example</h2>
+					<pre><code data-trim>
+							{
+								"books": [
+								  {
+									"id": "bk102",
+									"author": "Crockford, Douglas",
+									"title": "JavaScript: The Good Parts",
+									"genre": "Computer",
+									"price": 29.99,
+									"publish_date": "2008-05-01",
+									"description": "Unearthing the Excellence in JS"
+								  }
+								]
+							  }
+						</code></pre>
+				</section>
+				</section>
+				<section>
+					<section>
+						<h2>Let`s talk about YAML</h2>
+					</section>
+					<section>
+						<h2>According to the <a href="https://yaml.org/">official documentation</a></h2>
+						<blockquote cite="https://yaml.org/">YAML ("YAML Ain't Markup Language") is a human-readable data-serialization language.</blockquote>
+					</section>
+					<section id="fragments">
+							<h2>Quick facts about YAML syntacsis</h2>
+							<ul>
+								<li>.yaml files begin with ‘---’, marking the start of the document.</li>
+								<li>key-value pairs are separated by a colon.</li>
+								<li>lists start with a hyphen.</li>
+								<li>YAML uses indentation with one or more spaces to describe nested collections.</li>
+							</ul>
+					</section>
+					<section>
+						<h2>Code Example</h2>
+						<pre><code data-trim>
+								books:
+								- id: bk102
+								  author: Crockford, Douglas
+								  title: 'JavaScript: The Good Parts'
+								  genre: Computer
+								  price: 29.99
+								  publish_date: !!str 2008-05-01
+								  description: Unearthing the Excellence in JavaScript
+						</code></pre>
+					</section>
+				</section>
+				<section>
+						<section>
+							<h2>Some facts about TOML</h2>
+						</section>
+						<section>
+							<h2>TOML is</h2>
+							<blockquote cite="https://github.com/toml-lang/toml">a data serialisation language designed to be a minimal configuration file format that’s easy to read due to obvious semantics.</blockquote>
+						</section>
+						<section id="fragments">
+								<h2>Quick facts about TOML syntacsis</h2>
+								<ul class="margin">
+									<li>TOML is case sensitive.</li>
+									<li>A TOML file must contain only UTF-8 encoded 
+										Unicode characters.</li>
+									<li>Whitespace means tab or space.</li>
+								</ul>
+						</section>
+						<section>
+							<h2>Code Example</h2>
+							<pre><code data-trim>
+									[[books]]
+									id = 'bk101'
+									author = 'Crockford, Douglas'
+									title = 'JavaScript: The Good Parts'
+									genre = 'Computer'
+									price = 29.99
+									publish_date = 2008-05-01T00:00:00+00:00
+									description = 'Unearthing the Excellence in JavaScript'
+							</code></pre>
+						</section>
+				</section>
+				<section>
+					<section>
+						<h2>Syntactical differences between TOML, YAML, and JSON</h2>
+					</section>
+					<section>
+						<h2>Strings</h2>
+					</section>
+						<section>
+						<h3>TOML</h3>
+						<pre><code data-trim>
+							key = "String Value"
+							multiline = """\
+								The quick brown \
+								fox jumps over \
+								the lazy dog.\
+							"""
+							</code></pre>
+						</section>
+						<section>
+						<h3>YAML</h3>
+						<pre><code data-trim>
+							key : String Value
+							multilinePreservedLinebreaks:
+							|
+								L1 - The quick brown
+								L2 - fox jumps over
+								L3 - the lazy dog.
+							multilineReplaceLinebreaksWithWhitespace:
+							>
+								This sentence ist just too long to keep it
+								on the same line.
+							</code></pre>
+						</section>
+						<section>
+						<h3>JSON</h3>
+						<pre><code data-trim>
+							{
+								"key" : "String Value"
+							}
+						</code></pre>
+					</section>
+					<section>
+						<h2>Objects / Hash Tables / Collections</h2>
+					</section>
+					<section>
+						<h3>TOML</h3>
+						<pre><code data-trim>
+								[table_key]
+								property = "Value"
+								secondProperty = "2nd Value"
+							</code></pre>
+						</section>
+					<section>
+							<h3>YAML</h3>
+							<pre><code data-trim>
+								objectKey:
+								property: Value
+								secondProperty: 2nd Value
+								alternative: { subkey: 5.0, another: 123 }
+							</code></pre>
+						</section>
+					<section>
+						<h2>Arrays / Lists</h2>
+					</section>
+					<section>
+							<h3>TOML</h3>
+							<pre><code data-trim>
+								fruits = [ "Apple", "Banana", "Strawberry" ]
+								formats = [
+									"YAML",
+									"JSON",
+									"TOML"
+								]
+								</code></pre>
+							</section>
+							<section>
+								<h3>YAML</h3>
+								<pre><code data-trim>
+									fruits:
+									- Apple
+									- Banana
+									- Strawberry
+									formats: [ YAML, JSON, TOML ]
+								</code></pre>
+							</section>
+							<section>
+								<h3>JSON</h3>
+								<pre><code data-trim>
+									{
+										"fruits": ["Apple","Banana","Strawberry"],
+										"formats": [
+										"YAML",
+										"JSON",
+										"TOML"
+										]
+									}
+							</code></pre>
+						</section>
+				</section>
+				<section>
+						<section>
+							<h2>Comparison between JSON,YAML and TOML for data serialization</h2>
+						</section>
+						<section>
+							<h2>File size</h2>
+						</section>
+						<section>
+							<img src="images/Снимок2.JPG">
+						</section>
+						<section>
+							<h2>Benchmarking</h2>
+						</section>
+						<section>
+							<img src="images/ser.JPG">
+							<h3>Parsers:</h3>
+							<ul>
+								<li><a href="https://github.com/nodeca/js-yaml">YAML parser</a></li>
+								<li><a href="https://github.com/BinaryMuse/toml-node">TOML parser</a></li>
+							</ul>
+						</section>
+						<section>
+							<h2>How do you use YAML parser?</h2>
+							<pre><code data-trim>
+							npm install yaml-js
+							</code></pre>
+							<pre><code data-trim>
+							yaml.load(
+							'---\n' +
+							'phrase1:\n' +
+							'  - hello\n' +
+							'  - world\n' +
+							'phrase2:\n' +
+							'  - good\n' +
+							'  - evening');
+							// { phrase1: [ 'hello', 'world' ],
+							//  phrase2: [ 'good', 'evening' ]
+							//  }
+							   yaml.dump({
+							   phrase1: [ 'hello',   'world' ],
+							   phrase2: [ 'good', 'evening' ]});
+							</code></pre>
+						</section>
+						<section>
+							<h2>How do you use TOML parser?</h2>
+							<pre><code data-trim>
+							npm install toml-js
+							</code></pre>
+							<pre><code data-trim>
+							toml.parse(
+								'"""
+								[input]
+								file_name = "test.txt"
+								
+								[output]
+								verbose = true
+								"""');
+							// {
+							//	"input": {
+							//	  "file_name": {
+							//		"type": "string",
+							//		"value": "test.txt"
+							//	  }
+							//	},
+							//	"output": {
+							//	  "verbose": {
+							//		"type": "bool",
+							//		"value": "true"
+							//	  }
+							//	}
+							 // }
+							//  
+							//  
+							   toml.dump({
+								"input": {
+								"file_name": {
+								"type": "string",
+								"value": "test.txt"
+									}
+								},
+								"output": {
+								"verbose": {
+								"type": "bool",
+								"value": "true"
+										}
+									}
+								});
+							</code></pre>
+						</section>
+				</section>
+					<section>
+						<section>
+						<h2>Conclusion</h2>
+					</section>
+						<section>
+							<h2 class="mar">Anvantages of YAML:</h2>
+							<ul class="left yam">
+								<li>YAML has a wide variety of uses and popular for.</li>
+								<li>YAML is the superset of JSON.</li>
+							</ul>
+							<h2 class="mar top">Disadvantages of YAML:</h2>
+							<ul class="left">
+								<li>There are a lot of extra 
+									precautions while writing YAML code.</li>
+								<li>JSON and TOML has better performance than YAML.</li>
+							</ul>
+						</section>
+						<section>
+								<h2 class="mar">Anvantages of TOML:</h2>
+								<ul class="left">
+									<li>TOML was specifically designed to be easier to hand-edit.</li>
+									<li>YAML's syntax is much more complex and subtle than TOML.</li>
+								</ul>
+								<h2 class="mar top">Disadvantages of TOML:</h2>
+								<ul class="left spec tp">
+									<li>Not as fast serialization and deserialization as JSON and YAML.</li>
+									<li>TOML can be a little verbose.</li>
+								</ul>
+						</section>
+						<section>
+								<h2 class="mar">Anvantages of JSON:</h2>
+								<ul class="left jsono">
+									<li>JSON is extra popular.</li>
+									<li>Fast serialization and deserialization.</li>
+								</ul>
+								<h2 class="mar top">Disadvantages of JSON:</h2>
+								<ul class="left jsont">
+									<li>Overly strict.</li>
+									<li>Lack of comments.</li>
+									<li>It doesn’t have any support for multi-line strings.</li>
+								</ul>
+						</section>
+						<section>
+							<img class = "fin" src="images/Снимок.JPG">
+						</section>
+				  </section>
+			</div>
+		</div>
+		<script src="js/reveal.js"></script>
+		<script>
+			Reveal.initialize({
+				dependencies: [
+				{
+					src: 'plugin/markdown/marked.js'
+				},
+				{
+					src: 'plugin/markdown/markdown.js'
+				},
+				{
+					src: 'plugin/notes/notes.js',
+					async: true
+				},
+				{
+					src: 'plugin/highlight/highlight.js',
+					async: true,
+					callback: function () {
+						hljs.initHighlightingOnLoad();
+					}
+				}
+				]
+			});
+		</script>
+	</body>
+</html>

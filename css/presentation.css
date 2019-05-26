@@ -1,0 +1,52 @@
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+  text-transform: none;
+}
+
+
+
+h6.speaker{
+    color:#666;
+}
+
+ul.margin{
+  margin-left:18%;
+}
+
+img.fin{
+  width:78%;
+  height:50%;
+}
+h2.mar{
+  color:rgb(99, 135, 236);
+}
+h2.mar, ul.left{
+  text-align:left;
+}
+
+ul.spec{
+  margin-left:-7%;
+}
+
+ul.jsont{
+  margin-left:-2%;
+}
+
+ul.jsono{
+  margin-left:-22%;
+}
+
+ul.yam{
+  margin-left: -5%;
+}
+h2.top{
+  margin-top:5%;
+}
+
+ul.tp{
+  margin-left: 4%;
+}
